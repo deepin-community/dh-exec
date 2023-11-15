@@ -1,5 +1,5 @@
 /* dh-exec.c -- Wrapper around dh-exec-* commands.
- * Copyright (C) 2011-2015  Software Freedom Conservancy, Inc.
+ * Copyright (C) 2011-2023  Software Freedom Conservancy, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <errno.h>
+#include <stdbool.h>
 
 #include "dh-exec.lib.h"
 
@@ -122,6 +123,7 @@ dh_exec_help (void)
           "  --with=[command,...]        Run with the specified sub-commands only.\n"
           "  --without=[command,...]     Run without the specified sub-commands.\n"
           "  --with-scripts=[script,...] Run with the specified scripts only.\n"
+          "  --no-defaults               Do not run the default sub-commands.\n"
           "  --no-act                    Do not run, just print the pipeline.\n"
           "  --list                      List the available sub-commands and scripts.\n"
           "  --help                      Display this help screen.\n"
@@ -138,11 +140,11 @@ dh_exec_version (void)
 {
   printf ("dh-exec " PACKAGE_VERSION "\n"
           "\n"
-          "Copyright (C) 2011-2015 Software Freedom Conservancy, Inc.\n"
+          "Copyright (C) 2011-2023 Software Freedom Conservancy, Inc.\n"
           "This is free software; see the source for copying conditions.  There is NO\n"
           "warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
           "\n"
-          "Written by Gergely Nagy <algernon@debian.org>\n");
+          "Written by Gergely Nagy <algernon@debian.org> and Craig Small <csmall@debian.org>\n");
   return EXIT_SUCCESS;
 }
 
@@ -219,6 +221,7 @@ main (int argc, char *argv[])
 {
   pipeline *p;
   int status, n = 0, no_act = 0, do_list = 0;
+  bool use_defaults = true;
   const char *src;
 
   char **dhe_commands, **dhe_scripts = NULL;
@@ -226,6 +229,7 @@ main (int argc, char *argv[])
     {"with",    required_argument, NULL, 'I'},
     {"with-scripts", required_argument, NULL, 'i'},
     {"without", required_argument, NULL, 'X'},
+    {"no-defaults", no_argument, NULL, 'D'},
     {"help",    no_argument      , NULL, 'h'},
     {"version", no_argument      , NULL, 'v'},
     {"no-act",  no_argument      , NULL, 'n'},
@@ -265,6 +269,9 @@ main (int argc, char *argv[])
         case 'n':
           no_act = 1;
           break;
+        case 'D':
+          use_defaults = false;
+          break;
         case 'l':
           do_list = 1;
           break;
@@ -293,7 +300,8 @@ main (int argc, char *argv[])
       setenv ("DH_EXEC_SOURCE", src, 1);
     }
 
-  dh_exec_pipeline_add (p, "dh-exec-filter");
+  if (use_defaults)
+    dh_exec_pipeline_add (p, "dh-exec-filter");
 
   if (dhe_scripts)
     {
@@ -366,7 +374,8 @@ main (int argc, char *argv[])
 
   dh_exec_cmdlist_free (dhe_commands);
 
-  dh_exec_pipeline_add (p, "dh-exec-strip");
+  if (use_defaults)
+    dh_exec_pipeline_add (p, "dh-exec-strip");
 
   if (no_act)
     {

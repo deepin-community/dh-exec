@@ -24,9 +24,11 @@ up to these scripts to do the actual work.
 
 .TP
 .B dh\-exec\-filter\-arch
-Filters out lines that are not for the current architecture. A line
+
+Filters out lines that are not for the current host architecture (the
+architecture the package is being built for). A line
 can be pre\- or post\-fixed with a bracketed list of architectures,
-and it will be kept only if building on one of the architectures.
+and it will be kept only if building for one of the architectures.
 
 The filter supports negation and wildcards, with the same syntax as
 \fIdpkg\-architecture\fR(1).

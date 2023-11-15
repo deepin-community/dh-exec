@@ -1,3 +1,58 @@
+dh-exec (0.28) unstable; urgency=medium
+
+  [Debian Janitor]
+  * Remove constraints unnecessary since buster (oldstable):
+    + Build-Depends: Drop versioned constraint on perl:any (>= 5.14.2~).
+    + Build-Depends: Drop versioned constraint on libdpkg-perl (>= 1.17.14~).
+
+  [Craig Small]
+  * install-rename: Look in debian/tmp for files to move Closes: #1028347
+  * dh-exec: Add no-defaults to not run filter and strip.
+    Closes: #840682
+  * Update to standards 4.6.2, no changes required.
+
+ -- Craig Small <csmall@debian.org>  Mon, 30 Oct 2023 17:33:45 +1100
+
+dh-exec (0.27) unstable; urgency=medium
+
+  * install-rename: Remove noop for -i -a flags Closes: #1017023
+
+ -- Craig Small <csmall@debian.org>  Mon, 15 Aug 2022 20:10:45 +1000
+
+dh-exec (0.26) unstable; urgency=medium
+
+  * Replace the QA uploads and put them into git
+
+ -- Craig Small <csmall@debian.org>  Sat, 23 Jul 2022 22:01:49 +1000
+
+dh-exec (0.25) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Use secure copyright file specification URI.
+  * Bump debhelper from old 9 to 12.
+  * Change priority extra to priority optional.
+  * Drop unnecessary dependency on dh-autoconf.
+
+  [ Craig Small ]
+  * Adopting package Closes: #851746
+  * Update to standards 4.6.1, no changes required.
+  * Bump debhelper to 13.
+  * Remove old versioned dependencies where not needed.
+
+ -- Craig Small <csmall@debian.org>  Thu, 21 Jul 2022 19:22:59 +1000
+
+dh-exec (0.24) unstable; urgency=medium
+
+  * Add support for moving files to a package, instead of copying. Thanks
+    to Barak A. Pearlmutter and Niels Thykier for the report and bringing
+    the request to my attention. (Closes: #498067)
+  * Fix the combination of dh_install --fail-missing, dh-exec and
+    arch-only/arch-indep builds. Thanks to Ferenc Wágner for the report.
+    (Closes: #831786)
+  * Bump Standards-Version to 3.9.8, no changes required.
+
+ -- Gergely Nagy <algernon@madhouse-project.org>  Fri, 07 Oct 2016 11:30:20 +0200
+
 dh-exec (0.23.4) unstable; urgency=medium
 
   * QA upload.

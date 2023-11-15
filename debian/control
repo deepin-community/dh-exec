@@ -1,25 +1,25 @@
 Source: dh-exec
 Section: devel
 Priority: optional
-Maintainer: Debian QA Group <packages@qa.debian.org>
-Build-Depends: debhelper (>= 9.20151004~), dh-autoreconf,
-               automake (>= 1:1.11),
+Maintainer: Craig Small <csmall@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               automake,
                libpipeline-dev, pkg-config,
-               perl:any (>= 5.14.2~),
-               libdpkg-perl (>= 1.17.14~),
+               perl:any,
+               libdpkg-perl,
                bats <!nocheck>,
 Rules-Requires-Root: no
-Standards-Version: 3.9.6
-Homepage: https://github.com/algernon/dh-exec
-Vcs-Git: https://github.com/algernon/dh-exec.git
-Vcs-Browser: https://github.com/algernon/dh-exec
+Standards-Version: 4.6.2
+Homepage: https://salsa.debian.org/debian/dh-exec
+Vcs-Browser: https://salsa.debian.org/debian/dh-exec
+Vcs-Git: https://salsa.debian.org/debian/dh-exec.git
 
 Package: dh-exec
 Multi-Arch: foreign
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
-         ${perl:Depends}, perl (>= 5.14.2~), debhelper (>= 9.20151004~),
-         libdpkg-perl (>= 1.17.14~)
+         ${perl:Depends}, perl, debhelper, libdpkg-perl,
+         debhelper
 Description: Scripts to help with executable debhelper files
  Debhelper (in compat level 9 and above) allows its config files to be
  executable, and uses the output of such scripts as if it was the

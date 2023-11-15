@@ -1,4 +1,4 @@
-.TH "DH\-EXEC" "1" "2015-10-05" "" "dh-exec"
+.TH "DH\-EXEC" "1" "2023-10-30" "" "dh-exec"
 .ad l
 .nh
 .SH "NAME"
@@ -53,7 +53,9 @@ too. See below for the options!
 .IP "\fB\-\-with\fR=\fIcommand\fR[\fB,\fR\fIcommand\fR ...]" 4
 Replace the list of sub\-commands to run the input through with a
 custom list (where entries are separated by whitespace or
-commas). This option will always replace the existing list with
+commas) that includes \fIdh\-exec\-filter\fR and \fIdh\-exec\-strip\fR
+at the start and end of the queue respectively.
+This option will always replace the existing list with
 whatever is specified.
 
 This can be used to explicitly set which sub\-commands to use.
@@ -64,7 +66,9 @@ Defaults to \fIsubst,install\fR.
 
 .IP "\fB\-\-without\fR=\fIcommand\fR[\fB,\fR\fIcommand\fR ...]" 4
 Inversely to the option above, this lists all the sub\-commands which
-should not be used.
+should not be used. The \fIdh-exec-filter\fR and \fIdh-exec-strip\fR
+subcommands cannot be removed using this option. Use the
+\fB\-\-no-defaults\fR instead.
 
 The list \fBmust not\fR include the \fIdh\-exec\-\fR prefix.
 
@@ -81,6 +85,15 @@ The list \fBmust not\fR include the \fIdh\-exec\-\fR prefix.
 
 By default it is empty, meaning there is no filtering done, and
 whatever scripts the sub\-commands find, will be run.
+
+.IP "\fB\-\-no\-defaults" 4
+Most packages require the sub\-command list to start with
+\fIdh\-exec\-filter\fR and end with \fIdh\-exec\-strip\fR
+subcommands. If you really want to, use this option to remove
+both these sub\-commands.
+
+The \fI\-\-without\fR option does not remove these two
+sub\-commands.
 
 .IP "\fB\-\-no\-act" 4
 Do not really do anything, but print the pipeline that would have been
@@ -108,6 +121,10 @@ profiles, and so on).
 .B dh\-exec\-install
 An extension to \fIdh_install\fR(1), that supports renaming files
 during the copy process, using a special syntax.
+
+.TP
+.B dh\-exec\-strip
+Removes unrequired lines such as comments or blank lines.
 
 .SH "ENVIRONMENT"
 
@@ -146,4 +163,4 @@ The various scripts ran by the sub\-commands.
 \fIdh\-exec\-install\fR(1)
 
 .SH "AUTHOR"
-dh\-exec is copyright \(co 2011-2015 by Software Freedom Conservancy, Inc.
+dh\-exec is copyright \(co 2011-2023 by Software Freedom Conservancy, Inc.
