@@ -4,3 +4,4 @@
 ## corresponding environment variable, or the original ${...} if the
 ## env. var does not exist.
 s/(\$\{([^\}]+)\})/exists $ENV{$2} ? $ENV{$2} : $1/eg;
+s/(\$\{env:([^\}]+)\})/exists $ENV{$2} ? $ENV{$2} : die(qq{Cannot expand "${1}" as the ENV variable "${2}" is unset.})/eg;
