@@ -1,4 +1,10 @@
-.TH "DH\-EXEC\-SUBST" "1" "2015-10-05" "" "dh-exec"
+.\" (C) Copyright 2011-2024 Software Freedom Conservancy, Inc.
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 3 of the License, or
+.\" (at your option) any later version.
+.\"
+.TH "DH\-EXEC\-SUBST" "1" "2024-02-27" "" "dh-exec"
 .ad l
 .nh
 .SH "NAME"
@@ -9,7 +15,9 @@ dh\-exec\-subst \- Debhelper executable file substition scripts
 src/libfoo-*.so.* debian/foo-plugins/usr/lib/foo/${DEB_HOST_MULTIARCH}/
 
 .SH "DESCRIPTION"
-Being a sub\-command of \fIdh\-exec\fR(1), this program must not be
+Being a sub\-command of
+.BR dh\-exec (1),
+this program must not be
 ran directly, but through \fIdh\-exec\fR, which automatically runs all
 available sub\-commands if run bare; or explicitly with \fBdh\-exec
 \-\-with=subst\fR.
@@ -31,14 +39,22 @@ its input. It does not do any kind of filtering: whatever is available
 in the environment, will be available for substitution, however unsafe
 that may be.
 
-Introduced in version \fI0.1\fR.
+\fB${FOO}\fR and \fB${env:FOO}\fR both will expand to the environment
+variable \fIFOO\fR. Only the \fBenv\fR form will error if the
+variable is unset, in keeping with
+.BR debhelper (7)
+convention.
+
+Introduced in version \fI0.1\fR, with the \fBenv:\fR format added
+in \fI0.29\fR.
 
 .TP
 .B dh\-exec\-subst\-multiarch
 Attempts to expand any of the variables known to
-\fIdpkg\-architecture\fR(1), mostly useful for multi\-arch support.
+.BR dpkg\-architecture (1),
+mostly useful for multi\-arch support.
 
-The command will query \fIdpkg\-architecture\fR(1) directly, and does
+The command will query \fBdpkg\-architecture\fR(1) directly, and does
 not rely on environment variables set (as the called program will
 prefer already set environment variables anyway).
 
@@ -65,8 +81,6 @@ The various scripts for the higher\-level program.
 The sub\-command was introduced in dh\-exec version \fI0.1\fR.
 
 .SH "SEE ALSO"
-\fIdebhelper\fR(1), \fIdh\-exec\fR(1)
-
-.SH "AUTHOR"
-dh\-exec\-subst is copyright \(co 2011-2015 by Software Freedom
-Conservancy, Inc.
+.BR dh\-exec (1),
+.BR dpkg\-architecture (1),
+.BR debhelper (7)

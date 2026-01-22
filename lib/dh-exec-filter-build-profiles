@@ -34,8 +34,8 @@ if ($ENV{'DEB_BUILD_PROFILES'} || /<([^>]*)>/) {
     if (!/<([^>]*)>/) {
         $line_concerned = 1;
     }
-    while (/<([^>]*)>/) {
-        $line_concerned |= profile_concerned ($1, $_);
+    while (/(<([^>]*)>)/) {
+        $line_concerned |= profile_concerned ($1);
         s/<([^>]*)>\s+//;
     }
 

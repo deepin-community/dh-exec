@@ -1,3 +1,24 @@
+dh-exec (0.31) unstable; urgency=medium
+
+  * Update build filter profile to work witrh newer dpkg Closes: #1123560
+
+ -- Craig Small <csmall@debian.org>  Wed, 24 Dec 2025 19:05:33 +1100
+
+dh-exec (0.30) unstable; urgency=medium
+
+  * dh-exec-install-rename: Change filename only if moving/renaming
+    the files Closes: #1068632
+
+ -- Craig Small <csmall@debian.org>  Sun, 19 May 2024 20:30:01 +1000
+
+dh-exec (0.29) unstable; urgency=medium
+
+  * dh-exec-subst: use env:ENV_VAR substition too Closes: #1064849
+  * Change build-dep pkg-config -> pkgconf
+  * Moved/updated manpages
+
+ -- Craig Small <csmall@debian.org>  Tue, 27 Feb 2024 17:03:00 +1100
+
 dh-exec (0.28) unstable; urgency=medium
 
   [Debian Janitor]
