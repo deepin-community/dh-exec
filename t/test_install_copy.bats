@@ -70,7 +70,7 @@ EOF
 
     [ -f "${nullfile}" ]
     ! expect_file "/var/lib/dh-exec/foo.8"
-    expect_output "/var/lib/dh-exec/foo.8 /var/lib/dh-exec/"
+    expect_output "${nullfile}"
 }
 
 @test "install: DH_CONFIG_ACT_ON_PACKAGE works on regexp-y packages too" {

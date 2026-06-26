@@ -9,11 +9,11 @@ pkglibexec_PROGRAMS	= src/dh-exec-subst \
 			  src/dh-exec-illiterate \
 			  src/dh-exec-strip \
 			  src/dh-exec-filter
-man1_MANS		= src/dh-exec-subst.1 \
-			  src/dh-exec-install.1 \
-			  src/dh-exec-illiterate.1 \
-			  src/dh-exec-filter.1 \
-			  src/dh-exec.1
+man1_MANS		= man/dh-exec-subst.1 \
+			  man/dh-exec-install.1 \
+			  man/dh-exec-illiterate.1 \
+			  man/dh-exec-filter.1 \
+			  man/dh-exec.1
 
 pkgdata_SCRIPTS		= lib/dh-exec-subst-env \
 			  lib/dh-exec-subst-multiarch \
