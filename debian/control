@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Craig Small <csmall@debian.org>
 Build-Depends: debhelper-compat (= 13),
                automake,
-               libpipeline-dev, pkg-config,
+               libpipeline-dev, pkgconf,
                perl:any,
                libdpkg-perl,
                bats <!nocheck>,
